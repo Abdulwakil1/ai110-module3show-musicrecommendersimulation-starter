@@ -1,4 +1,4 @@
-# Byte compiled
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *.pyo
@@ -8,8 +8,32 @@ __pycache__/
 env/
 venv/
 
+# Environment variables
+.env
+.env.local
+
 # OS files
 .DS_Store
+Thumbs.db
 
 # Pytest cache
 .pytest_cache/
+.coverage
+htmlcov/
+
+# Distribution / packaging
+*.egg-info/
+dist/
+build/
+
+# Logs
+*.log
+
+# VS Code
+.vscode/
+
+# Output files
+*.csv.bak
+
+# Local reference notes
+definitions.md
