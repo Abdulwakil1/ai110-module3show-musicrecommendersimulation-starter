@@ -131,7 +131,7 @@ VibeFinder 1.0 operates on a small catalog of 18 songs, which limits recommendat
 
 ## Reflection
 
-Read and complete `model_card.md`:
+<!-- Read and complete `model_card.md`: -->
 
 [**Model Card**](model_card.md)
 
