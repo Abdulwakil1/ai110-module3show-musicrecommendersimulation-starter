@@ -8,7 +8,7 @@
 
 ## 2. Intended Use
 
-Describe what your recommender is designed to do and who it is for.
+<!-- Describe what your recommender is designed to do and who it is for. -->
 
 <!-- Prompts:
 
@@ -22,7 +22,7 @@ VibeFinder 1.0 is designed to suggest songs from a small catalog based on a user
 
 ## 3. How the Model Works
 
-Explain your scoring approach in simple language.
+<!-- Explain your scoring approach in simple language. -->
 
 <!-- Prompts:
 
@@ -39,7 +39,7 @@ The recommender compares each song in the catalog against a user's taste profile
 
 ## 4. Data
 
-Describe the dataset the model uses.
+<!-- Describe the dataset the model uses. -->
 
 <!-- Prompts:
 
@@ -54,7 +54,7 @@ The catalog contains 18 songs stored in data/songs.csv. Each song has 10 attribu
 
 ## 5. Strengths
 
-Where does your system seem to work well
+<!-- Where does your system seem to work well -->
 
 <!-- Prompts:
 
@@ -68,7 +68,7 @@ The system works well for users with clear, single-genre preferences that are we
 
 ## 6. Limitations and Bias
 
-Where the system struggles or behaves unfairly.
+<!-- Where the system struggles or behaves unfairly. -->
 
 <!-- Prompts:
 
@@ -89,7 +89,7 @@ Finally, the system only supports a single genre and mood preference per user pr
 
 ## 7. Evaluation
 
-How you checked whether the recommender behaved as expected.
+<!-- How you checked whether the recommender behaved as expected. -->
 
 <!-- Prompts:
 
@@ -112,7 +112,7 @@ I also ran a weight experiment by doubling energy (3.0 → 6.0) and halving genr
 
 ## 8. Future Work
 
-Ideas for how you would improve the model next.
+<!-- Ideas for how you would improve the model next. -->
 
 <!-- Prompts:
 
@@ -129,7 +129,7 @@ Ideas for how you would improve the model next.
 
 ## 9. Personal Reflection
 
-A few sentences about your experience.
+<!-- A few sentences about your experience. -->
 
 <!-- Prompts:
 

@@ -2,16 +2,7 @@
 
 ## Project Summary
 
-In this project you will build and explain a small music recommender system.
-
-Your goal is to:
-
-- Represent songs and a user "taste profile" as data
-- Design a scoring rule that turns that data into recommendations
-- Evaluate what your system gets right and wrong
-- Reflect on how this mirrors real world AI recommenders
-
-Replace this paragraph with your own summary of what your version does.
+VibeFinder 1.0 is a content-based music recommender simulator built in Python. It loads a catalog of 18 songs, scores each one against a user's taste profile using weighted genre, mood, and audio feature matching, and returns a ranked list of personalized recommendations with explanations. This project explores how real-world platforms like Spotify turn song attributes and user preferences into predictions.
 
 ---
 
@@ -111,6 +102,8 @@ You can add more tests in `tests/test_recommender.py`.
 - What happened when you added tempo or valence to the score
 - How did your system behave for different types of users -->
 
+I tested four user profiles (High-Energy Pop, Chill Lofi, Deep Intense Rock, and Middle-of-the-Road) and ran a weight experiment doubling energy and halving genre. The weight change caused ranking shifts in the High-Energy Pop profile, confirming the system is sensitive to weight decisions. The Middle-of-the-Road profile revealed a filter bubble — neutral numerical preferences still defaulted to the same lofi/chill results as the specific Chill Lofi profile.
+
 ### Profile Test Results
 
 ![High-Energy Pop](screenshots/high_energy_pop.png)
@@ -131,8 +124,6 @@ Examples:
 - It might over favor one genre or mood
 
 You will go deeper on this in your model card. -->
-
-## Limitations and Risks
 
 VibeFinder 1.0 operates on a small catalog of 18 songs, which limits recommendation variety — especially for users whose preferred genre appears only once in the dataset. The system does not consider lyrics, language, cultural context, or listening history, and it can only match one genre and one mood at a time. Because genre and mood bonuses together outweigh all numerical features combined, the system tends to create a filter bubble, repeatedly recommending the same genre rather than surfacing unexpected but relevant songs. See the [Model Card](model_card.md) for a full breakdown of limitations and bias.
 
