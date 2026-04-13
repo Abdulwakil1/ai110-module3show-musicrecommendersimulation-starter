@@ -2,7 +2,7 @@
 
 ## Project Summary
 
-VibeFinder 1.0 is a content-based music recommender simulator built in Python. It loads a catalog of 18 songs, scores each one against a user's taste profile using weighted genre, mood, and audio feature matching, and returns a ranked list of personalized recommendations with explanations. This project explores how real-world platforms like Spotify turn song attributes and user preferences into predictions.
+VibeFinder 1.0 is a content-based music recommender simulator built in Python. It loads a catalog of 18 songs with 16 attributes each, scores each one against a user's taste profile using weighted genre, mood, and audio feature matching, and returns a ranked list of personalized recommendations with explanations. This project explores how real-world platforms like Spotify turn song attributes and user preferences into predictions.
 
 ---
 
@@ -31,27 +31,40 @@ Real-world platforms like Spotify and YouTube Music primarily use two approaches
 - `valence` — musical positivity (0.0–1.0)
 - `danceability` — rhythmic suitability for dancing (0.0–1.0)
 - `acousticness` — acoustic vs. electronic quality (0.0–1.0)
+- `popularity` — track popularity score (0–100)
+- `release_decade` — decade the track was released (e.g., 2010, 2020)
+- `mood_tags` — detailed sub-mood descriptors (e.g., "nostalgic, dreamy, uplifting")
+- `instrumentalness` — vocal vs. instrumental ratio (0.0–1.0)
+- `loudness` — perceived loudness level (0.0–1.0)
+- `speechiness` — degree of spoken word content (0.0–1.0)
 
 **`UserProfile` features:**
 
 - `preferred_genre`, `preferred_mood` — categorical taste preferences
 - `preferred_energy`, `preferred_tempo_bpm`, `preferred_valence`, `preferred_danceability`, `preferred_acousticness` — target numerical values the recommender scores each song against
+- `popularity`, `release_decade`, `mood_tags`, `instrumentalness`, `loudness`, `speechiness` — extended preference targets for the new song attributes
 
 ### Algorithm Recipe
 
 Each song is scored against the user profile using the following weights:
 
-| Feature                | Type        | Points                            |
-| ---------------------- | ----------- | --------------------------------- |
-| Genre match            | Categorical | +15                               |
-| Mood match             | Categorical | +10                               |
-| Energy proximity       | Numerical   | 3.0 × (1 - \|user − song\|)       |
-| Tempo proximity        | Numerical   | 2.5 × (1 - \|user − song\| / 176) |
-| Valence proximity      | Numerical   | 2.0 × (1 - \|user − song\|)       |
-| Danceability proximity | Numerical   | 2.0 × (1 - \|user − song\|)       |
-| Acousticness proximity | Numerical   | 0.8 × (1 - \|user − song\|)       |
+| Feature                    | Type        | Points                                     |
+| -------------------------- | ----------- | ------------------------------------------ |
+| Genre match                | Categorical | +15                                        |
+| Mood match                 | Categorical | +10                                        |
+| Energy proximity           | Numerical   | 3.0 × (1 - \|user − song\|)                |
+| Tempo proximity            | Numerical   | 2.5 × (1 - \|user − song\| / 176)          |
+| Valence proximity          | Numerical   | 2.0 × (1 - \|user − song\|)                |
+| Danceability proximity     | Numerical   | 2.0 × (1 - \|user − song\|)                |
+| Acousticness proximity     | Numerical   | 0.8 × (1 - \|user − song\|)                |
+| Popularity proximity       | Numerical   | 1.5 × (1 - \|user − song\| / 100)          |
+| Release decade             | Numerical   | 1.0 exact, 0.5 one decade off, 0 otherwise |
+| Mood tags overlap          | Numerical   | 2.0 × (matching tags / total user tags)    |
+| Instrumentalness proximity | Numerical   | 1.5 × (1 - \|user − song\|)                |
+| Loudness proximity         | Numerical   | 1.5 × (1 - \|user − song\|)                |
+| Speechiness proximity      | Numerical   | 1.0 × (1 - \|user − song\|)                |
 
-**Maximum possible score: ~40 points.** Songs are ranked by total score and the top-K results are returned as recommendations.
+**Maximum possible score: ~49.5 points.** Songs are ranked by total score and the top-K results are returned as recommendations.
 
 ### Expected Bias
 

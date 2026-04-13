@@ -1,19 +1,19 @@
-id,title,artist,genre,mood,energy,tempo_bpm,valence,danceability,acousticness
-1,Sunrise City,Neon Echo,pop,happy,0.82,118,0.84,0.79,0.18
-2,Midnight Coding,LoRoom,lofi,chill,0.42,78,0.56,0.62,0.71
-3,Storm Runner,Voltline,rock,intense,0.91,152,0.48,0.66,0.10
-4,Library Rain,Paper Lanterns,lofi,chill,0.35,72,0.60,0.58,0.86
-5,Gym Hero,Max Pulse,pop,intense,0.93,132,0.77,0.88,0.05
-6,Spacewalk Thoughts,Orbit Bloom,ambient,chill,0.28,60,0.65,0.41,0.92
-7,Coffee Shop Stories,Slow Stereo,jazz,relaxed,0.37,90,0.71,0.54,0.89
-8,Night Drive Loop,Neon Echo,synthwave,moody,0.75,110,0.49,0.73,0.22
-9,Focus Flow,LoRoom,lofi,focused,0.40,80,0.59,0.60,0.78
-10,Rooftop Lights,Indigo Parade,indie pop,happy,0.76,124,0.81,0.82,0.35
-11,Sahara Skies,Desert Caravan,world,adventurous,0.68,102,0.57,0.70,0.33
-12,Velvet Letters,Blue Ashes,blues,melancholic,0.46,84,0.38,0.52,0.64
-13,Copper Sun,Prairie Anthem,country,nostalgic,0.55,96,0.66,0.61,0.48
-14,Temple Pulse,Lotus Circuit,afrobeat,euphoric,0.88,126,0.85,0.90,0.12
-15,Frozen Constellations,Aurora String Quartet,classical,serene,0.22,68,0.50,0.28,0.95
-16,Iron Anthem,Rivet Crown,metal,rebellious,0.97,176,0.41,0.57,0.03
-17,Maré de Fogo,Rio Solaris,latin,passionate,0.81,128,0.74,0.86,0.20
-18,Neon Tides,Harbor Frequency,drum and bass,urgent,0.94,174,0.62,0.83,0.07
+id,title,artist,genre,mood,energy,tempo_bpm,valence,danceability,acousticness,popularity,release_decade,mood_tags,instrumentalness,loudness,speechiness
+1,Sunrise City,Neon Echo,pop,happy,0.82,118,0.84,0.79,0.18,86,2020,"uplifting,bright,feel-good",0.04,0.79,0.08
+2,Midnight Coding,LoRoom,lofi,chill,0.42,78,0.56,0.62,0.71,68,2020,"calm,study,nocturnal",0.62,0.34,0.05
+3,Storm Runner,Voltline,rock,intense,0.91,152,0.48,0.66,0.10,74,2010,"driving,aggressive,charged",0.07,0.88,0.06
+4,Library Rain,Paper Lanterns,lofi,chill,0.35,72,0.60,0.58,0.86,61,2010,"rainy,calm,introspective",0.71,0.27,0.04
+5,Gym Hero,Max Pulse,pop,intense,0.93,132,0.77,0.88,0.05,83,2020,"motivational,energetic,confident",0.02,0.92,0.11
+6,Spacewalk Thoughts,Orbit Bloom,ambient,chill,0.28,60,0.65,0.41,0.92,57,2010,"spacious,dreamy,meditative",0.88,0.18,0.02
+7,Coffee Shop Stories,Slow Stereo,jazz,relaxed,0.37,90,0.71,0.54,0.89,59,2000,"warm,laid-back,cozy",0.79,0.30,0.03
+8,Night Drive Loop,Neon Echo,synthwave,moody,0.75,110,0.49,0.73,0.22,66,2010,"retro,nocturnal,brooding",0.44,0.67,0.05
+9,Focus Flow,LoRoom,lofi,focused,0.40,80,0.59,0.60,0.78,72,2020,"focused,steady,minimal",0.67,0.33,0.04
+10,Rooftop Lights,Indigo Parade,indie pop,happy,0.76,124,0.81,0.82,0.35,78,2010,"sunset,optimistic,anthemic",0.12,0.72,0.07
+11,Sahara Skies,Desert Caravan,world,adventurous,0.68,102,0.57,0.70,0.33,54,2000,"wanderlust,earthy,expansive",0.51,0.61,0.06
+12,Velvet Letters,Blue Ashes,blues,melancholic,0.46,84,0.38,0.52,0.64,52,1990,"heartfelt,somber,smoky",0.29,0.41,0.05
+13,Copper Sun,Prairie Anthem,country,nostalgic,0.55,96,0.66,0.61,0.48,63,2000,"nostalgic,warm,storytelling",0.18,0.56,0.06
+14,Temple Pulse,Lotus Circuit,afrobeat,euphoric,0.88,126,0.85,0.90,0.12,71,2020,"vibrant,celebratory,groovy",0.22,0.84,0.09
+15,Frozen Constellations,Aurora String Quartet,classical,serene,0.22,68,0.50,0.28,0.95,49,1980,"tranquil,delicate,reflective",0.97,0.12,0.01
+16,Iron Anthem,Rivet Crown,metal,rebellious,0.97,176,0.41,0.57,0.03,69,2010,"defiant,aggressive,adrenaline",0.11,0.96,0.04
+17,Maré de Fogo,Rio Solaris,latin,passionate,0.81,128,0.74,0.86,0.20,76,2020,"fiery,romantic,dancefloor",0.14,0.82,0.08
+18,Neon Tides,Harbor Frequency,drum and bass,urgent,0.94,174,0.62,0.83,0.07,67,2020,"high-octane,tense,propulsive",0.36,0.94,0.07

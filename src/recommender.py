@@ -52,15 +52,28 @@ def load_songs(csv_path: str) -> List[Dict]:
     """Read songs from a CSV file and return a list of dicts with numeric fields cast to float/int."""
 
     songs: List[Dict] = []
-    float_fields = {"energy", "tempo_bpm", "valence", "danceability", "acousticness"}
+    float_fields = {
+        "energy",
+        "tempo_bpm",
+        "valence",
+        "danceability",
+        "acousticness",
+        "instrumentalness",
+        "loudness",
+        "speechiness",
+    }
+    int_fields = {"id", "popularity", "release_decade"}
 
     with open(csv_path, newline="", encoding="utf-8") as csv_file:
         reader = csv.DictReader(csv_file)
         for row in reader:
             song = dict(row)
-            song["id"] = int(song["id"])
+            for field in int_fields:
+                if field in song and song[field] != "":
+                    song[field] = int(song[field])
             for field in float_fields:
-                song[field] = float(song[field])
+                if field in song and song[field] != "":
+                    song[field] = float(song[field])
             songs.append(song)
 
     return songs
@@ -96,6 +109,50 @@ def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, str]:
         proximity = weight * (1 - abs(user_val - song_val) / range_val)
         score += proximity
         reasons.append(f"{feature_name} proximity ({proximity:.2f})")
+
+    popularity_score = 1.5 * (1 - abs(user_prefs.get('popularity', 50) - song['popularity']) / 100)
+    score += popularity_score
+    reasons.append(f"popularity proximity ({popularity_score:.2f})")
+
+    user_decade = user_prefs.get('release_decade', song['release_decade'])
+    decade_gap = abs(user_decade - song['release_decade']) // 10
+    if decade_gap == 0:
+        release_decade_score = 1.0
+    elif decade_gap == 1:
+        release_decade_score = 0.5
+    else:
+        release_decade_score = 0.0
+    score += release_decade_score
+    reasons.append(f"release_decade proximity ({release_decade_score:.2f})")
+
+    user_tags_raw = user_prefs.get('mood_tags', '')
+    if isinstance(user_tags_raw, str):
+        user_tags = [tag.strip().lower() for tag in user_tags_raw.split(',') if tag.strip()]
+    else:
+        user_tags = [str(tag).strip().lower() for tag in user_tags_raw if str(tag).strip()]
+
+    song_tags_raw = song.get('mood_tags', '')
+    if isinstance(song_tags_raw, str):
+        song_tags = [tag.strip().lower() for tag in song_tags_raw.split(',') if tag.strip()]
+    else:
+        song_tags = [str(tag).strip().lower() for tag in song_tags_raw if str(tag).strip()]
+
+    matching_tags = len(set(user_tags) & set(song_tags))
+    mood_tags_score = 2.0 * (matching_tags / len(user_tags)) if user_tags else 0.0
+    score += mood_tags_score
+    reasons.append(f"mood_tags overlap ({mood_tags_score:.2f})")
+
+    instrumentalness_score = 1.5 * (1 - abs(user_prefs.get('instrumentalness', 0.5) - song['instrumentalness']))
+    score += instrumentalness_score
+    reasons.append(f"instrumentalness proximity ({instrumentalness_score:.2f})")
+
+    loudness_score = 1.5 * (1 - abs(user_prefs.get('loudness', 0.5) - song['loudness']))
+    score += loudness_score
+    reasons.append(f"loudness proximity ({loudness_score:.2f})")
+
+    speechiness_score = 1.0 * (1 - abs(user_prefs.get('speechiness', 0.5) - song['speechiness']))
+    score += speechiness_score
+    reasons.append(f"speechiness proximity ({speechiness_score:.2f})")
     
     explanation = ", ".join(reasons)
     return (score, explanation)
