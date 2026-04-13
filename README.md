@@ -105,11 +105,18 @@ You can add more tests in `tests/test_recommender.py`.
 
 ## Experiments You Tried
 
-Use this section to document the experiments you ran. For example:
+<!-- Use this section to document the experiments you ran. For example:
 
 - What happened when you changed the weight on genre from 2.0 to 0.5
 - What happened when you added tempo or valence to the score
-- How did your system behave for different types of users
+- How did your system behave for different types of users -->
+
+### Profile Test Results
+
+![High-Energy Pop](screenshots/high_energy_pop.png)
+![Chill Lofi](screenshots/chill_lofi.png)
+![Deep Intense Rock](screenshots/deep_intense_rock.png)
+![Middle-of-the-Road](screenshots/middle_of_the_road.png)
 
 ---
 
