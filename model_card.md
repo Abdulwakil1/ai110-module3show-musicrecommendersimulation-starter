@@ -33,7 +33,7 @@ VibeFinder 1.0 is designed to suggest songs from a small catalog based on a user
 
 Avoid code here. Pretend you are explaining the idea to a friend who does not program. -->
 
-The recommender compares each song in the catalog against a user's taste profile using a weighted scoring system. First, it checks whether the song's genre and mood match the user's preferences — a genre match is worth 15 points and a mood match is worth 10 points. Then, for five numerical features (energy, tempo, valence, danceability, and acousticness), it calculates how close the song's value is to the user's target — the closer the match, the higher the score. All scores are added together and songs are ranked from highest to lowest. The top 5 are returned as recommendations.
+The recommender compares each song in the catalog against a user's taste profile using a weighted scoring system. First, it checks whether the song's genre and mood match the user's preferences — a genre match is worth 15 points and a mood match is worth 10 points. Then, for eleven numerical features (energy, tempo, valence, danceability, acousticness, popularity, release decade, mood tags, instrumentalness, loudness, and speechiness), it calculates how close the song's value is to the user's target — the closer the match, the higher the score. All scores are added together and songs are ranked from highest to lowest. The top 5 are returned as recommendations.
 
 ---
 
@@ -48,7 +48,7 @@ The recommender compares each song in the catalog against a user's taste profile
 - Did you add or remove data
 - Are there parts of musical taste missing in the dataset -->
 
-The catalog contains 18 songs stored in data/songs.csv. Each song has 10 attributes: id, title, artist, genre, mood, energy, tempo_bpm, valence, danceability, and acousticness. The original starter dataset had 10 songs; 8 were added to improve genre and mood diversity. Genres represented include pop, lofi, rock, jazz, ambient, synthwave, indie pop, world, blues, country, afrobeat, classical, metal, latin, and drum and bass. Most genres appear only once, which limits recommendation quality for users outside the lofi and pop categories. The dataset reflects a narrow slice of global musical taste and does not include lyrics, language, cultural context, or listener behavior.
+The catalog contains 18 songs stored in data/songs.csv. Each song has 16 attributes: id, title, artist, genre, mood, energy, tempo_bpm, valence, danceability, and acousticness. The original starter dataset had 10 songs; 8 were added to improve genre and mood diversity. Genres represented include pop, lofi, rock, jazz, ambient, synthwave, indie pop, world, blues, country, afrobeat, classical, metal, latin, and drum and bass. Most genres appear only once, which limits recommendation quality for users outside the lofi and pop categories. The dataset reflects a narrow slice of global musical taste and does not include lyrics, language, cultural context, or listener behavior.
 
 ---
 
@@ -62,9 +62,7 @@ The catalog contains 18 songs stored in data/songs.csv. Each song has 10 attribu
 - Any patterns you think your scoring captures correctly
 - Cases where the recommendations matched your intuition -->
 
-The system works well for users with clear, single-genre preferences that are well-represented in the catalog — particularly lofi/chill and pop/happy profiles, which have multiple songs available. The scoring logic is fully transparent: every recommendation includes a breakdown of exactly why each song was selected, making it easy to understand and debug. The proximity-based formula correctly rewards songs that are close to the user's numerical targets rather than just favoring the highest or lowest values.
-
----
+## The system works well for users with clear, single-genre preferences that are well-represented in the catalog — particularly lofi/chill and pop/happy profiles, which have multiple songs available. The scoring logic is fully transparent: every recommendation includes a breakdown of exactly why each song was selected, making it easy to understand and debug. The proximity-based formula correctly rewards songs that are close to the user's numerical targets rather than just favoring the highest or lowest values. A diversity penalty further improves results by applying a -5.0 deduction for repeated artists and -3.0 for overrepresented genres, reducing filter bubble risk in the top recommendations.
 
 ## 6. Limitations and Bias
 
@@ -124,7 +122,6 @@ I also ran a weight experiment by doubling energy (3.0 → 6.0) and halving genr
 - **Increase catalog size and diversity** — adding hundreds of songs across more genres and moods would dramatically improve recommendation quality, especially for underrepresented profiles like metal, classical, and afrobeat users.
 - **Reduce filter bubble risk** — lower the genre and mood bonus weights, or introduce a diversity constraint that ensures the top 5 results always include at least one song from a different genre.
 - **Support multi-preference profiles** — allow users to specify a list of preferred genres or moods instead of a single value, so the system can serve listeners with more complex tastes.
-- **Diversity penalty implemented** — artist repetition penalty (-5.0) and genre repetition penalty (-3.0) now reduce filter bubble risk in top results.
 
 ---
 

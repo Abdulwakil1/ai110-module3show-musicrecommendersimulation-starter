@@ -148,9 +148,7 @@ Examples:
 
 You will go deeper on this in your model card. -->
 
-VibeFinder 1.0 operates on a small catalog of 18 songs, which limits recommendation variety — especially for users whose preferred genre appears only once in the dataset. The system does not consider lyrics, language, cultural context, or listening history, and it can only match one genre and one mood at a time. Because genre and mood bonuses together outweigh all numerical features combined, the system tends to create a filter bubble, repeatedly recommending the same genre rather than surfacing unexpected but relevant songs. See the [Model Card](model_card.md) for a full breakdown of limitations and bias.
-
----
+VibeFinder 1.0 operates on a small catalog of 18 songs, which limits recommendation variety — especially for users whose preferred genre appears only once in the dataset. The system does not consider lyrics, language, cultural context, or listening history, and it can only match one genre and one mood at a time. Because genre and mood bonuses together outweigh all numerical features combined, the system tends to create a filter bubble, repeatedly recommending the same genre rather than surfacing unexpected but relevant songs. A diversity penalty partially addresses this by penalizing repeated artists and overrepresented genres. See the [Model Card](model_card.md) for a full breakdown of limitations and bias.
 
 ## Reflection
 

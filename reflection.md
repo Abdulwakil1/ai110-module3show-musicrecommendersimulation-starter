@@ -11,3 +11,10 @@ These two profiles returned nearly identical results even though the Middle-of-t
 
 **Weight Experiment — Original vs Modified**
 When energy weight was doubled and genre halved, Gym Hero dropped from #2 to #3 in the High-Energy Pop profile while Rooftop Lights moved up. This happened because Rooftop Lights has a mood match (+10) which partially compensated for losing some of the genre bonus, while Gym Hero relies heavily on the genre match alone. The experiment showed that even small weight changes can shift rankings, which means the choice of weights is a critical design decision — not just a technical detail.
+
+**Stretch Challenges — What Changed**
+Adding six new features (popularity, release_decade, mood_tags, instrumentalness, loudness, speechiness) in Challenge 1 increased scoring depth and pushed the max score from ~40 to ~49.5 points. The mood_tags overlap scoring was particularly interesting — songs with perfectly matching sub-mood tags (like Storm Runner getting 2.0 for the Deep Intense Rock profile) gained a meaningful boost that felt intuitive.
+
+The scoring modes in Challenge 2 confirmed that weight choices fundamentally change what the system values. Switching to mood-first caused Rooftop Lights to jump ahead of Gym Hero for the High-Energy Pop profile — a small weight change with a visible, meaningful result.
+
+The diversity penalty in Challenge 3 had the most surprising effect — it completely removed Focus Flow from the Chill Lofi top 5, not just demoted it. This shows that even a moderate penalty (-5.0) can have outsized effects when scores are closely clustered, which is something worth considering when designing fairness constraints in real systems.
