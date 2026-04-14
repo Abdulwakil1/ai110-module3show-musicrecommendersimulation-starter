@@ -90,6 +90,34 @@ def main() -> None:
             
             print("-" * 60 + "\n")
 
+    # Mode demonstration (keeps the original loop above unchanged)
+    modes = ["genre-first", "mood-first", "energy-focused"]
+
+    for profile_name, user_prefs in profiles.items():
+        print("\n" + "#" * 60)
+        print(f"🎧 MODE COMPARISON FOR PROFILE: {profile_name}")
+        print("#" * 60)
+
+        for mode in modes:
+            recommendations = recommend_songs(user_prefs, songs, k=5, mode=mode)
+
+            print("\n" + "=" * 60)
+            print(f"🔎 ACTIVE MODE: {mode}")
+            print("=" * 60)
+            print(f"Genre: {user_prefs['genre'].title()} | Mood: {user_prefs['mood'].title()}")
+            print("=" * 60 + "\n")
+
+            for rank, rec in enumerate(recommendations, 1):
+                song, score, explanation = rec
+                print(f"#{rank} - {song['title']} by {song.get('artist', 'Unknown')}")
+                print(f"Score: {score:.2f}")
+
+                explanation_list = explanation.split(", ")
+                for reason in explanation_list:
+                    print(f"  • {reason}")
+
+                print("-" * 60 + "\n")
+
 
 if __name__ == "__main__":
     main()

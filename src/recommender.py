@@ -78,25 +78,43 @@ def load_songs(csv_path: str) -> List[Dict]:
 
     return songs
 
-def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, str]:
+def _get_scoring_weights(mode: Optional[str] = None) -> Dict[str, float]:
+    """Return scoring weights for the selected recommendation mode."""
+    normalized_mode = (mode or "default").strip().lower()
+
+    mode_weights = {
+        "default": {"genre": 15.0, "mood": 10.0, "energy": 3.0},
+        "genre-first": {"genre": 30.0, "mood": 5.0, "energy": 3.0},
+        "mood-first": {"genre": 7.5, "mood": 20.0, "energy": 3.0},
+        "energy-focused": {"genre": 7.5, "mood": 5.0, "energy": 9.0},
+    }
+
+    if normalized_mode not in mode_weights:
+        valid_modes = ", ".join(mode_weights.keys())
+        raise ValueError(f"Unknown mode '{mode}'. Valid modes: {valid_modes}")
+
+    return mode_weights[normalized_mode]
+
+def score_song(user_prefs: Dict, song: Dict, mode: Optional[str] = None) -> Tuple[float, str]:
     """Compute a relevance score and explanation for a single song given user preferences."""
 
+    weights = _get_scoring_weights(mode)
     score = 0.0
     reasons = []
     
     # Genre match
     if song['genre'].lower() == user_prefs['genre'].lower():
-        score += 15.0
-        reasons.append("genre match (+15.0)")
+        score += weights['genre']
+        reasons.append(f"genre match (+{weights['genre']:.1f})")
     
     # Mood match
     if song['mood'].lower() == user_prefs['mood'].lower():
-        score += 10.0
-        reasons.append("mood match (+10.0)")
+        score += weights['mood']
+        reasons.append(f"mood match (+{weights['mood']:.1f})")
     
     # Numerical features with proximity scoring
     features = [
-        ('energy', 3.0, 1.0),
+        ('energy', weights['energy'], 1.0),
         ('tempo_bpm', 2.5, 176),
         ('valence', 2.0, 1.0),
         ('danceability', 2.0, 1.0),
@@ -157,11 +175,16 @@ def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, str]:
     explanation = ", ".join(reasons)
     return (score, explanation)
 
-def recommend_songs(user_prefs: Dict, songs: List[Dict], k: int = 5) -> List[Tuple[Dict, float, str]]:
+def recommend_songs(
+    user_prefs: Dict,
+    songs: List[Dict],
+    k: int = 5,
+    mode: Optional[str] = None,
+) -> List[Tuple[Dict, float, str]]:
     """Score all songs against user preferences and return the top k results sorted by score."""
     scored_songs = [
         (song, score, explanation)
         for song in songs
-        for score, explanation in [score_song(user_prefs, song)]
+        for score, explanation in [score_song(user_prefs, song, mode=mode)]
     ]
     return sorted(scored_songs, key=lambda item: item[1], reverse=True)[:k]

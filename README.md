@@ -68,7 +68,7 @@ Each song is scored against the user profile using the following weights:
 
 ### Expected Bias
 
-Because genre and mood together account for up to 25 out of 40 possible points, this system may over-prioritize categorical matches — a song with the right genre and mood but poor numerical alignment could outrank a song that is a near-perfect numerical match in a different genre. Additionally, acousticness carries the lowest weight intentionally, meaning highly produced songs are not unfairly penalized for lacking acoustic qualities.
+Because genre and mood together account for up to 25 out of 49.5 possible points, this system may over-prioritize categorical matches — a song with the right genre and mood but poor numerical alignment could outrank a song that is a near-perfect numerical match in a different genre. Additionally, acousticness carries the lowest weight among the original features intentionally, meaning highly produced songs are not unfairly penalized for lacking acoustic qualities.
 
 ## Getting Started
 
@@ -123,6 +123,10 @@ I tested four user profiles (High-Energy Pop, Chill Lofi, Deep Intense Rock, and
 ![Chill Lofi](screenshots/chill_lofi.png)
 ![Deep Intense Rock](screenshots/deep_intense_rock.png)
 ![Middle-of-the-Road](screenshots/middle_of_the_road.png)
+
+### Scoring Mode Comparison
+
+![Mode Comparison](screenshots/mode_comparison.png)
 
 ---
 
