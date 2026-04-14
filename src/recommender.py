@@ -187,4 +187,37 @@ def recommend_songs(
         for song in songs
         for score, explanation in [score_song(user_prefs, song, mode=mode)]
     ]
-    return sorted(scored_songs, key=lambda item: item[1], reverse=True)[:k]
+    remaining = sorted(scored_songs, key=lambda item: item[1], reverse=True)
+    selected: List[Tuple[Dict, float, str]] = []
+
+    while remaining and len(selected) < k:
+        selected_artists = {song["artist"] for song, _, _ in selected}
+        selected_genres: Dict[str, int] = {}
+        for song, _, _ in selected:
+            genre = song["genre"]
+            selected_genres[genre] = selected_genres.get(genre, 0) + 1
+
+        adjusted_remaining = []
+        for song, score, explanation in remaining:
+            adjusted_score = score
+            penalty_notes = []
+
+            if song["artist"] in selected_artists:
+                adjusted_score -= 5.0
+                penalty_notes.append("artist diversity penalty (-5.0)")
+
+            if selected_genres.get(song["genre"], 0) >= 2:
+                adjusted_score -= 3.0
+                penalty_notes.append("genre diversity penalty (-3.0)")
+
+            if penalty_notes:
+                explanation = f"{explanation}; {', '.join(penalty_notes)}"
+
+            adjusted_remaining.append((song, adjusted_score, explanation, penalty_notes))
+
+        ranked_candidates = sorted(adjusted_remaining, key=lambda item: item[1], reverse=True)
+        selected_song, selected_score, selected_explanation, selected_penalty_notes = ranked_candidates.pop(0)
+        selected.append((selected_song, selected_score, selected_explanation))
+        remaining = [(song, score, explanation) for song, score, explanation, _ in ranked_candidates]
+
+    return selected

@@ -124,6 +124,7 @@ I also ran a weight experiment by doubling energy (3.0 → 6.0) and halving genr
 - **Increase catalog size and diversity** — adding hundreds of songs across more genres and moods would dramatically improve recommendation quality, especially for underrepresented profiles like metal, classical, and afrobeat users.
 - **Reduce filter bubble risk** — lower the genre and mood bonus weights, or introduce a diversity constraint that ensures the top 5 results always include at least one song from a different genre.
 - **Support multi-preference profiles** — allow users to specify a list of preferred genres or moods instead of a single value, so the system can serve listeners with more complex tastes.
+- **Diversity penalty implemented** — artist repetition penalty (-5.0) and genre repetition penalty (-3.0) now reduce filter bubble risk in top results.
 
 ---
 
