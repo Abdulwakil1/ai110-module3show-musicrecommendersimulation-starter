@@ -62,7 +62,7 @@ The catalog contains 18 songs stored in data/songs.csv. Each song has 16 attribu
 - Any patterns you think your scoring captures correctly
 - Cases where the recommendations matched your intuition -->
 
-## The system works well for users with clear, single-genre preferences that are well-represented in the catalog — particularly lofi/chill and pop/happy profiles, which have multiple songs available. The scoring logic is fully transparent: every recommendation includes a breakdown of exactly why each song was selected, making it easy to understand and debug. The proximity-based formula correctly rewards songs that are close to the user's numerical targets rather than just favoring the highest or lowest values. A diversity penalty further improves results by applying a -5.0 deduction for repeated artists and -3.0 for overrepresented genres, reducing filter bubble risk in the top recommendations.
+The system works well for users with clear, single-genre preferences that are well-represented in the catalog — particularly lofi/chill and pop/happy profiles, which have multiple songs available. The scoring logic is fully transparent: every recommendation includes a breakdown of exactly why each song was selected, making it easy to understand and debug. The proximity-based formula correctly rewards songs that are close to the user's numerical targets rather than just favoring the highest or lowest values. A diversity penalty further improves results by applying a -5.0 deduction for repeated artists and -3.0 for overrepresented genres, reducing filter bubble risk in the top recommendations.
 
 ## 6. Limitations and Bias
 
