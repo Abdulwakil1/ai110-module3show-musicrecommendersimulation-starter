@@ -1,4 +1,5 @@
 from src.recommender import load_songs, recommend_songs
+from tabulate import tabulate
 def main() -> None:
     songs = load_songs("data/songs.csv") 
     
@@ -78,17 +79,17 @@ def main() -> None:
         print("="*60 + "\n")
 
         # Recommendations
+        table_data = []
         for rank, rec in enumerate(recommendations, 1):
             song, score, explanation = rec
-            print(f"#{rank} - {song['title']} by {song.get('artist', 'Unknown')}")
-            print(f"Score: {score:.2f}")
-            
-            # Handle explanation as string or list
+            song_display = f"{song['title']} — {song.get('artist', 'Unknown')}"
             explanation_list = explanation.split(", ")
-            for reason in explanation_list:
-                print(f"  • {reason}")
-            
-            print("-" * 60 + "\n")
+            reasons_display = "\n".join(explanation_list)
+            table_data.append([f"#{rank}", song_display, f"{score:.2f}", reasons_display])
+        
+        headers = ["Rank", "Song", "Score", "Reasons"]
+        print(tabulate(table_data, headers=headers, tablefmt="rounded_outline"))
+        print()
 
     # Mode demonstration (keeps the original loop above unchanged)
     modes = ["genre-first", "mood-first", "energy-focused"]
@@ -107,16 +108,17 @@ def main() -> None:
             print(f"Genre: {user_prefs['genre'].title()} | Mood: {user_prefs['mood'].title()}")
             print("=" * 60 + "\n")
 
+            table_data = []
             for rank, rec in enumerate(recommendations, 1):
                 song, score, explanation = rec
-                print(f"#{rank} - {song['title']} by {song.get('artist', 'Unknown')}")
-                print(f"Score: {score:.2f}")
-
+                song_display = f"{song['title']} — {song.get('artist', 'Unknown')}"
                 explanation_list = explanation.split(", ")
-                for reason in explanation_list:
-                    print(f"  • {reason}")
-
-                print("-" * 60 + "\n")
+                reasons_display = "\n".join(explanation_list)
+                table_data.append([f"#{rank}", song_display, f"{score:.2f}", reasons_display])
+            
+            headers = ["Rank", "Song", "Score", "Reasons"]
+            print(tabulate(table_data, headers=headers, tablefmt="rounded_outline"))
+            print()
 
 
 if __name__ == "__main__":
