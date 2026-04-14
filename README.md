@@ -124,11 +124,11 @@ I tested four user profiles (High-Energy Pop, Chill Lofi, Deep Intense Rock, and
 ![Deep Intense Rock](screenshots/deep_intense_rock.png)
 ![Middle-of-the-Road](screenshots/middle_of_the_road.png)
 
-### Scoring Mode Comparison
+### Scoring Mode Comparison (Challenge 2)
 
 ![Mode Comparison](screenshots/mode_comparison.png)
 
-### Diversity Penalty
+### Diversity Penalty (Challenge 3)
 
 A diversity penalty was added to prevent artist and genre repetition in results. Songs from an already-recommended artist are penalized -5.0 points, and songs from a genre appearing 2+ times are penalized -3.0 points. For the Chill Lofi profile, this pushed Focus Flow (LoRoom) out of the top 5, replacing it with Spacewalk Thoughts and Velvet Letters from different artists.
 
